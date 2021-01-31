@@ -279,7 +279,7 @@ def main(args):
 				step=0	
 				path=[] # stores end2end path by concatenating path1 and path2
 				tree=0	
-				tic = time.clock()	
+				tic = time.time()
 				while target_reached==0 and step<80 :
 					step=step+1
 					if tree==0:
@@ -309,7 +309,7 @@ def main(args):
 					path=lvc(path,i)
 					indicator=feasibility_check(path,i)
 					if indicator==1:
-						toc = time.clock()
+						toc = time.time()
 						t=toc-tic
 						et.append(t)
 						fp=fp+1
@@ -320,8 +320,12 @@ def main(args):
 						for p in range(0,len(path)):
 							print (path[p][1])
 						print ("Actual path[0]:")
+
 						for p in range(0,path_lengths[i][j]):
 							print (paths[i][j][p][0])
+							# np.savetxt(a_file, paths[i][j][p][0])
+						# a_file.close()
+
 						print ("Actual path[1]:")
 						for p in range(0,path_lengths[i][j]):
 							print (paths[i][j][p][1])
@@ -338,7 +342,7 @@ def main(args):
 								indicator=feasibility_check(path,i)
 					
 							if indicator==1:
-								toc = time.clock()
+								toc = time.time()
 								t=toc-tic
 								et.append(t)
 								fp=fp+1
