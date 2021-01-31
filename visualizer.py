@@ -1,20 +1,18 @@
 import matplotlib
-#matplotlib.use('Agg')
+# matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import struct
 import numpy as np
 import argparse
 
+
 def main(args):
     # visualize point cloud (obstacles)
     obs = []
-    temp=np.fromfile(args.obs_file)
+    temp = np.fromfile(args.obs_file)
     obs.append(temp)
-    obs = np.array(obs).astype(np.float32).reshape(-1,2)
-    plt.scatter(obs[:,0], obs[:,1], c='blue')
-
-
-
+    obs = np.array(obs).astype(np.float32).reshape(-1, 2)
+    plt.scatter(obs[:, 0], obs[:, 1], c='blue')
 
     # visualize path
     path = np.loadtxt(args.path_file)
@@ -33,8 +31,10 @@ def main(args):
 
 parser = argparse.ArgumentParser()
 # for training
-parser.add_argument('--obs_file', type=str, default='./data/obs_cloud/obc0.dat',help='obstacle point cloud file')
-parser.add_argument('--path_file', type=str, default='./results/env_0/path_0.txt',help='path file')
+parser.add_argument('--obs_file', type=str, default='/home/muhayyuddin/MPNet/MPNet/dataset/obs_cloud/obc0.dat',
+                    help='obstacle point cloud file')
+parser.add_argument('--path_file', type=str, default='./results/env_0/path_0.txt', help='path file')
+
 args = parser.parse_args()
 print(args)
 main(args)
